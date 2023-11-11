@@ -1,0 +1,1516 @@
+<script language=javascript>parent.document.getElementById('btn_search').disabled = false;
+parent.document.getElementById('btn_save').disabled = false;</script>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+	预选
+</title>
+	<link href="../_Style/styles_Rpt.css" rel="stylesheet" type="text/css"/>
+	<script language="JavaScript" type="text/JavaScript">
+		function openWin(theID, vT) {
+
+			var theURL, w, h, Tform;
+			if (vT == 'kc') {
+				w = 480, h = 300;
+				eval("Tform='width=" + w + ",height=" + h + "'");
+				theURL = '../JXJH/INFO_KC.aspx?id=' + theID.getAttribute("value");
+			} else if (vT == 'js') {
+				w = 450, h = 400;
+				eval("Tform='width=" + w + ",height=" + h + "'");
+				theURL = '../JXZY/INFO_Teacher.aspx?id=' + theID.getAttribute("value");
+			}
+			pop = window.open(theURL, 'winKPT', Tform);
+		}
+
+		function MM_openBrWindow(theURL, winName, features) { //v2.0
+			window.open(theURL, winName, features);
+		}
+
+		function JSChooseTeacher(theID) {
+			var vURL;
+			var vStr;
+			var JsLen;
+			vURL = theID.value;
+			j = theID.getAttribute("id");
+			JsLen = vURL.length;
+			vStr = eval("FormAdd.chkKC" + (j) + ".value");
+			//eval("document.all.Teacher" + j + ".value=vURL");
+			document.getElementById("Teacher" + j).setAttribute("value", vURL);
+			if (vURL != "notea") {
+				var str = vStr.split("|");
+				str[7] = vURL;
+				eval("FormAdd.chkKC" + j + ".value=str.join('|')");
+			}
+		}
+
+		function ChkValue(theObj) {
+			var strurl;
+			var strid = "TTT", s = false;
+			var N
+			var s1 = theObj.value;
+			N = FormAdd.chkCount.value;
+			if (s1 == "提交预选") {
+				for (i = 1; i <= N; i++) {
+					if (eval("FormAdd.chkKC" + (i - 1) + ".checked==true") && eval("FormAdd.chkKC" + (i - 1) + ".disabled==false")) {
+						if (eval("FormAdd.yxtj" + (i - 1) + ".checked")) {
+							yxtj = "1"
+						} else {
+							yxtj = "0"
+						}
+						strid = strid + "," + eval("FormAdd.chkKC" + (i - 1) + ".value") + "$" + yxtj;
+						s = true;
+					}
+				}
+				FormAdd.id.value = strid;
+
+				if (!s) return false;
+				if (!confirm('是否提交记录？')) return false;
+				strurl = "stu_xsyx_rpt.aspx?func=1";
+				FormAdd.action = strurl;
+				FormAdd.submit();
+			}
+		}
+	</script>
+</head>
+<body leftMargin="0" marginheight="0"
+	  marginwidth="0" oncontextmenu="window.event.returnValue=false"
+	  ondragstart="window.event.returnValue=false" onselectstart="window.event.returnValue=false" onsource="window.event.returnValue=false" topMargin="0">
+<div id="pageRpt">
+	<form action='stu_xsyx_rpt.aspx?func=1' method=post name=FormAdd>
+		<table align=center border=0 cellpadding=0 cellspacing=0 width=100%>
+			<tr>
+				<td valign=top>
+					<TABLE BORDER=0 CELLPADDING=0 CELLSPACING=1 WIDTH=100% align=center bgcolor=#89bfa7 id=oTable>
+						<tr class=T>
+							<td align=center rowspan=2 width='5%'>选定</td>
+							<td align=center rowspan=2 width='36%'>课程</td>
+							<td align=center rowspan=2 width='4%'>学分<br></td>
+							<td align=center rowspan=2 width='20%'>类别</td>
+							<td align=center rowspan=2 width='15%'>任课教师</td>
+							<td align=center rowspan=2 width='5%'>允许<br>调剂</td>
+							<td align=center colspan=3 rowspan=1 width='15%'>人数</td>
+						</tr>
+						<tr class=T>
+							<td align=center width='5%'>限选</td>
+							<td align=center width='5%'>已选</td>
+							<td align=center width='5%'>可选</td>
+						</tr>
+						<input id=chkCount name=chkCount type=hidden value=100>
+						<tr class='B' title=''>
+							<td align=center><input checked disabled id=0
+													name='chkKC0' type=checkbox
+													value="050098|2208|01|03|05|02|1.0||[M0052]声乐合唱8班"></td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050098>[M0052]声乐合唱8班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><select disabled id=0 name=Sel_Teacher onchange=JSChooseTeacher(this)
+												   style='width:80'></select>&ensp;&ensp;<a disabled
+																					href='javascript:void(0)' name='Teacher0'>简历</a><br>
+							</td>
+							<td align=center><input checked disabled id=0 name='yxtj0' type=checkbox value='1'></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=1 name=chkKC1 type=checkbox
+													value="050099|2208|01|03|05|02|1.0||[M0053]声乐合唱9班|nablaegaoablagyavqa3aduacwbkahqazwbhaekataawaeeamwbzafmasqbzafyaywa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050099>[M0053]声乐合唱9班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=1 name='yxtj1' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=2 name=chkKC2 type=checkbox
+													value="050103|2208|01|03|05|02|1.0||[M0057]尤克里里1班|cgawaecadgbkaeyamgbcahaadqa5aekauwaxadgasaa2aeoaywbkaewaqwbqaeuabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050103>[M0057]尤克里里1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=2 name='yxtj2' type=checkbox value=''></td>
+							<td align=right>&ensp;35</td>
+							<td align=right>&ensp;35</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=3 name=chkKC3 type=checkbox
+													value="050106|2208|01|03|05|02|1.0||[M0060]语言表演1班|dwb2aekazga3ahqadgarag0aqqbcadeaegbtaggaswa3ag4abqa4ahiazwbrae0amaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050106>[M0060]语言表演1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=3 name='yxtj3' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=4 name=chkKC4 type=checkbox
+													value="050107|2208|01|03|05|02|1.0||[M0061]语言表演2班|rqb3adiamwbmagkasabsadaazgawag4amgbxagyangbmagsaaaa4agcatabvae4adwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050107>[M0061]语言表演2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=4 name='yxtj4' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=5 name=chkKC5 type=checkbox
+													value="050111|2208|01|03|05|02|1.0||[M0065]装饰DIY1班|uaa5ahiacgbsaeuabwb3aeyalwbjadgavwbxagkavabsahoakwboaesasqbcadeamaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050111>[M0065]装饰DIY1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=5 name='yxtj5' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=6 name=chkKC6 type=checkbox
+													value="050112|2208|01|03|05|02|1.0||[M0066]装饰DIY2班|nabmaggauqbradaadwaracsatabwahyacqbzahqawqbzadkamgblaheamqarahkatqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050112>[M0066]装饰DIY2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=6 name='yxtj6' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=7 name=chkKC7 type=checkbox
+													value="050119|2208|01|03|05|02|1.0||[M0073]创意装饰画1班|rwbfaggababmahkarabyafgavqbhaguasabwafmaoqbqadaaqgaxagwanqbiafaarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050119>[M0073]创意装饰画1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=7 name='yxtj7' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=8 name=chkKC8 type=checkbox
+													value="050120|2208|01|03|05|02|1.0||[M0074]创意装饰画2班|nwbnafoaoqawaheazwboacsarabxafyakwayahmanaazafuarabpag8abwbeagqaqqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050120>[M0074]创意装饰画2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=8 name='yxtj8' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=9 name=chkKC9 type=checkbox
+													value="050121|2208|01|03|05|02|1.0||[M0075]手机摄影技术1班|mgbpaeyaaqbrahoaagbkahualwavahmanabsag0aqqaxac8aywa3agianqbcagqaqqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050121>[M0075]手机摄影技术1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=9 name='yxtj9' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=10 name=chkKC10 type=checkbox
+													value="050122|2208|01|03|05|02|1.0||[M0076]手机摄影技术2班|uwbuageaqwbgaheaqqa2aggaqgboaekauabsagoasqa4ageaawb2adiadqawahgasqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050122>[M0076]手机摄影技术2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=10 name='yxtj10' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=11 name=chkKC11 type=checkbox
+													value="050125|2208|01|03|05|02|1.0||[M0081]武术散打1班|bgb3afiauwa3aeeaagb3afiacwb1adcargb4afoaaab1ag4angb2aeiaygazaesawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050125>[M0081]武术散打1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=11 name='yxtj11' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=12 name=chkKC12 type=checkbox
+													value="050126|2208|01|03|05|02|1.0||[M0082]武术散打2班|lwa0afiavwbpahoadwb4ag4auwbmag8aoab0ahcadgbuaeqatqavaegaaqbyadkarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050126>[M0082]武术散打2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=12 name='yxtj12' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=13 name=chkKC13 type=checkbox
+													value="050127|2208|01|03|05|02|1.0||[M0083]有氧健身舞1班|ngbsag8azaboaeuayga3ahcalwawahkakwboadiarqbwahyavgbwag0auqbuac8abwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050127>[M0083]有氧健身舞1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=13 name='yxtj13' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=14 name=chkKC14 type=checkbox
+													value="050128|2208|01|03|05|02|1.0||[M0084]有氧健身舞2班|dablae8awqavaeyarqbvageaoab3aeeaywboaemaaab2adqadabiafiaqqbgae0anaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050128>[M0084]有氧健身舞2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=14 name='yxtj14' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=15 name=chkKC15 type=checkbox
+													value="050129|2208|01|03|05|02|1.0||[M0089]瑜伽1班|mwbqaeuaraa0adkanabvaeqaagbiag8amwbdaesamgb6afoangbmagyabqbjaeqanaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050129>[M0089]瑜伽1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=15 name='yxtj15' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=16 name=chkKC16 type=checkbox
+													value="050130|2208|01|03|05|02|1.0||[M0090]瑜伽2班|bqa1agmarabbaduamaarahmazqbuahaayqbpahyaawbtaegawqbhahaamwavagsarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050130>[M0090]瑜伽2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=16 name='yxtj16' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=17 name=chkKC17 type=checkbox
+													value="050131|2208|01|03|05|02|1.0||[M0091]国际标准舞1班|ywbvagcauqarafyatgbjaekacabvafkarqa1aduazwbhagiaygawadyasgb6ag4abwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050131>[M0091]国际标准舞1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=17 name='yxtj17' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=18 name=chkKC18 type=checkbox
+													value="050133|2208|01|03|05|02|1.0||[M0093]软式排球1班|rqbyagqaegbhag0adaaxafuazwbjagoarab4ag4azabxageaaab3agkawgbaae0aawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050133>[M0093]软式排球1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=18 name='yxtj18' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=19 name=chkKC19 type=checkbox
+													value="050134|2208|01|03|05|02|1.0||[M0094]软式排球2班|sqbdaeiaagbnafmacgbmagcamgbnahkavwb6adkazwa2afgayqbaadyamwbtafmaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050134>[M0094]软式排球2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=19 name='yxtj19' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=20 name=chkKC20 type=checkbox
+													value="050135|2208|01|03|05|02|1.0||[M0095]快乐拉丁1班|swb2afmababiafiangbpagmaoqbwag8abaa0ae4avwb3ahqarabuadgargbjagsawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050135>[M0095]快乐拉丁1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=20 name='yxtj20' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=21 name=chkKC21 type=checkbox
+													value="050136|2208|01|03|05|02|1.0||[M0096]快乐拉丁2班|tabvadeamabqahyanwaragcazabpafkatgbjafkauqbqag0arabpafmawqb6afqadwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050136>[M0096]快乐拉丁2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=21 name='yxtj21' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=22 name=chkKC22 type=checkbox
+													value="050137|2208|01|03|05|02|1.0||[M0097]体育游戏1班|qwaxafgasab4adcaegaraeuakwb5adeanwbdafeatabpafcaawazac8aywbqaggacwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050137>[M0097]体育游戏1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=22 name='yxtj22' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=23 name=chkKC23 type=checkbox
+													value="050138|2208|01|03|05|02|1.0||[M0098]体育游戏2班|ugbtadiaqgazaduadabtaguamqbiaekasabwaduadqbpaecakwb5aemanqa4afkazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050138>[M0098]体育游戏2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=23 name='yxtj23' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=24 name=chkKC24 type=checkbox
+													value="050139|2208|01|03|05|02|1.0||[M0099]茶艺1班|nwbuadmadab1agkazgb5aeuaoqblagoazwaragyanqb1agkazgbzac8asqb6aewazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050139>[M0099]茶艺1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=24 name='yxtj24' type=checkbox value=''></td>
+							<td align=right>&ensp;30</td>
+							<td align=right>&ensp;30</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=25 name=chkKC25 type=checkbox
+													value="050141|2208|01|03|05|02|1.0||[M0101]酒水调制与创新1班|zgbwagsaeabyaeeacwbpahiavabuaguavabjahoabwbzaheatgbraeqaywbhaewacwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050141>[M0101]酒水调制与创新1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=25 name='yxtj25' type=checkbox value=''></td>
+							<td align=right>&ensp;30</td>
+							<td align=right>&ensp;30</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=26 name=chkKC26 type=checkbox
+													value="050142|2208|01|03|05|02|1.0||[M0102]酒水调制与创新2班|awa0aeeaygavafgazabyahqadgb5admayqbmadkamgbxafmaoqa3adeaugbradaacwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050142>[M0102]酒水调制与创新2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=26 name='yxtj26' type=checkbox value=''></td>
+							<td align=right>&ensp;30</td>
+							<td align=right>&ensp;30</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=27 name=chkKC27 type=checkbox
+													value="050149|2208|01|03|05|02|1.0||[M0109]舞蹈鉴赏1班|mwbkag8awqa3agqamgbnac8aqgawafmanwbjae4adaa3ahqabwbjafgawqayagcaqqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050149>[M0109]舞蹈鉴赏1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=27 name='yxtj27' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=28 name=chkKC28 type=checkbox
+													value="050157|2208|01|03|05|02|1.0||[M0117]篆刻基础入门1班|mgbzahkatqa5ahqanablae4azqboaeeasqbqaemazwbwafuacqb2afgaqgbmafuarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050157>[M0117]篆刻基础入门1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=28 name='yxtj28' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=29 name=chkKC29 type=checkbox
+													value="050158|2208|01|03|05|02|1.0||[M0118]篆刻基础入门2班|nqbtadgawqbrahoarqblagyaeabuahgatqbkaeeazwbaahmazgb5aeiataazafeabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050158>[M0118]篆刻基础入门2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=29 name='yxtj29' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=30 name=chkKC30 type=checkbox
+													value="050159|2208|01|03|05|02|1.0||[M0119]中国山水画临摹1班|rwbhafoaygbyag0aagbrac8aqgbhaeqadwbgafeatgbxadiasqbcadyazgbuadkamaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050159>[M0119]中国山水画临摹1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=30 name='yxtj30' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=31 name=chkKC31 type=checkbox
+													value="050160|2208|01|03|05|02|1.0||[M0120]中国山水画临摹2班|dwbkacsanqbkadkavgbnahgazwb1ahkanwbuaeyadgbiagkazwbdahkarab5afeaywa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050160>[M0120]中国山水画临摹2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=31 name='yxtj31' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=32 name=chkKC32 type=checkbox
+													value="050167|2208|01|03|05|02|1.0||[M0127]中国民族歌剧鉴赏1班|rwbpaeqaeqbzafiarga5ae8azgbhadkaeqbxaeiasgawagoaqwaraggasgbzafeavqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050167>[M0127]中国民族歌剧鉴赏1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=32 name='yxtj32' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=33 name=chkKC33 type=checkbox
+													value="050168|2208|01|03|05|02|1.0||[M0128]中国民族歌剧鉴赏2班|nwbdafuakwbvahqacwb6adkabwbdae0arwa2ahkaqqbwagiaqwa3adyayqbyaeoavqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050168>[M0128]中国民族歌剧鉴赏2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=33 name='yxtj33' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=34 name=chkKC34 type=checkbox
+													value="050183|2208|01|03|05|02|1.0||[M0143]水彩插画艺术1班|mqbsadaasgb1afaaoqbgahmaraayagqacgbyae4aagbiaegazwayaeoabqa2afaazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050183>[M0143]水彩插画艺术1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=34 name='yxtj34' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=35 name=chkKC35 type=checkbox
+													value="050184|2208|01|03|05|02|1.0||[M0144]水彩插画艺术2班|vabbaduatqayadyanqb0agsanabsahearabpaewawabpafmaqwb2adiatga2ahmatqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050184>[M0144]水彩插画艺术2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=35 name='yxtj35' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=36 name=chkKC36 type=checkbox
+													value="050185|2208|01|03|05|02|1.0||[M0145]篆刻基础入门3班|lwbtaguaeabhaeyavwbeahuaeqbpagwatwbhahgavwbzaheababyae8abqbuaeyaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050185>[M0145]篆刻基础入门3班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=36 name='yxtj36' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=37 name=chkKC37 type=checkbox
+													value="050186|2208|01|03|05|02|1.0||[M0146]篆刻基础入门4班|dqb0ahkaega1ahaamaa5ahqacabkafaanabmaekatwbjae0aeqavaheasabfadqabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050186>[M0146]篆刻基础入门4班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=37 name='yxtj37' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=38 name=chkKC38 type=checkbox
+													value="050187|2208|01|03|05|02|1.0||[M0085]校园拉丁舞1班|bwbrafyaegbuafcamwbzafgacgbaag0azgbaaeyazwb0afaamqbsadeazaawageazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050187>[M0085]校园拉丁舞1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=38 name='yxtj38' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=39 name=chkKC39 type=checkbox
+													value="050188|2208|01|03|05|02|1.0||[M0086]校园拉丁舞2班|zqboaeeaegb6adcasqbyafgamqbqaemarwboafeavqbhahganabsadyanabpaegavqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050188>[M0086]校园拉丁舞2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=39 name='yxtj39' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=40 name=chkKC40 type=checkbox
+													value="050189|2208|01|03|05|02|1.0||[M0087]有氧健身舞3班|wqbiageasqbtae8ababjagoaygawafoacqbwahqaywbzadeaoqbraeiabgbuaemavqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050189>[M0087]有氧健身舞3班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=40 name='yxtj40' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=41 name=chkKC41 type=checkbox
+													value="050190|2208|01|03|05|02|1.0||[M0088]有氧健身舞4班|ngbyadeargbnahiadqa2adqanqavacsargbkafkaeqbyaesavabiae4avgbzahiauqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050190>[M0088]有氧健身舞4班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=41 name='yxtj41' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=42 name=chkKC42 type=checkbox
+													value="050205|2208|01|03|05|02|1.0||[M0158]现代影视鉴赏1班|cwboae0aeqa1agyavqa5ahmadabtadgacqbragyarqbpahqaawbmahuaeabwahgazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050205>[M0158]现代影视鉴赏1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=42 name='yxtj42' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=43 name=chkKC43 type=checkbox
+													value="050206|2208|01|03|05|02|1.0||[M0159]现代影视鉴赏2班|eqb5agkamabpadkazwb6afeaaqbuahgasabiahkatqbpafkamabfadaaagbpadyatqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050206>[M0159]现代影视鉴赏2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=43 name='yxtj43' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=44 name=chkKC44 type=checkbox
+													value="050224|2208|01|03|05|02|1.0||[M0177]气排球1班|tgbzagyadqbsahaadgb1ae8aswbbahmarab4ahuayqbuag8amgbsagwacgbqaggarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050224>[M0177]气排球1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=44 name='yxtj44' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=45 name=chkKC45 type=checkbox
+													value="050236|2208|01|03|05|02|1.0||[M0178]气排球2班|eabpaeualwbxahuacgbxagwadwb3acsawgbrageangbxadmacwbladmasabiafqarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050236>[M0178]气排球2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=45 name='yxtj45' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=46 name=chkKC46 type=checkbox
+													value="050239|2208|01|03|05|02|1.0||[M0181]校园啦啦操1班|dqbcahaaoabpahgargboafgawqbnahcavgbjafaadga4ahcaoaavadeaqqbjagoamaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050239>[M0181]校园啦啦操1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=46 name='yxtj46' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=47 name=chkKC47 type=checkbox
+													value="050240|2208|01|03|05|02|1.0||[M0182]校园啦啦操2班|lwayagkabwbnadaatqayadcaaqbbaeqangbsaemamwboaewauqbradgaqgbhagmamaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050240>[M0182]校园啦啦操2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=47 name='yxtj47' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=48 name=chkKC48 type=checkbox
+													value="050241|2208|01|03|05|02|1.0||[M0183]大学生时尚礼仪1班|tabuafyaeabkagoamqavaecayqbrafuanabgaecazgbtahkamgbyafmaoab5acsaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050241>[M0183]大学生时尚礼仪1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=48 name='yxtj48' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=49 name=chkKC49 type=checkbox
+													value="050242|2208|01|03|05|02|1.0||[M0184]大学生时尚礼仪2班|bqbtadiaeqa2agsavab3adaawgb5adaacab0aheazgboaeeasabtadqadaayaguabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050242>[M0184]大学生时尚礼仪2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=49 name='yxtj49' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=50 name=chkKC50 type=checkbox
+													value="050251|2208|01|03|05|02|1.0||[M0185]戏剧影视片段改编1班|ugbsaduawqbyadmamqb6ag4atwbyahuatgb3agqadqbkaeiakwa0ae4argaraecaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050251>[M0185]戏剧影视片段改编1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=50 name='yxtj50' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=51 name=chkKC51 type=checkbox
+													value="050252|2208|01|03|05|02|1.0||[M0186]戏剧影视片段改编2班|mqbeafqatabnagyamabpaesabwa5adgatgbyag4avwbzafcavgbkagcababnaewasqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050252>[M0186]戏剧影视片段改编2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=51 name='yxtj51' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=52 name=chkKC52 type=checkbox
+													value="050253|2208|01|03|05|02|1.0||[M0187]西方歌剧鉴赏1班|yga1afmaoabqadiarabtagwasgbhafoavwbzadyatwbdadcamwbhaheamaa0agqaoaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050253>[M0187]西方歌剧鉴赏1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=52 name='yxtj52' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=53 name=chkKC53 type=checkbox
+													value="050254|2208|01|03|05|02|1.0||[M0188]西方歌剧鉴赏2班|tqb1aeqacqblagmatwbvahiasqb1agcaqwbyahkawqbyahoawga1afoawgbqaeoawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050254>[M0188]西方歌剧鉴赏2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=53 name='yxtj53' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=54 name=chkKC54 type=checkbox
+													value="050255|2208|01|03|05|02|1.0||[M0189]经典绘本阅读与赏析1班|sga2ag4avgbtahgarwa4aeqamgbnaeqasqblafeatabtaggaaabqac8anqbvadmaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050255>[M0189]经典绘本阅读与赏析1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=54 name='yxtj54' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=55 name=chkKC55 type=checkbox
+													value="050256|2208|01|03|05|02|1.0||[M0190]经典绘本阅读与赏析2班|awbradiaoqbzagiacqa3agkaegbkaeeacqbxaewauqblagcauwbragcaaqawafuaoaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050256>[M0190]经典绘本阅读与赏析2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=55 name='yxtj55' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=56 name=chkKC56 type=checkbox
+													value="050257|2208|01|03|05|02|1.0||[M0191]音乐电影赏析1班|sabdafkaeqbtafoatwbdag4ayqbqagkaegbhahoaqwb3ahuacgbiacsaaqbpag0azwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050257>[M0191]音乐电影赏析1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=56 name='yxtj56' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=57 name=chkKC57 type=checkbox
+													value="050258|2208|01|03|05|02|1.0||[M0192]音乐电影赏析2班|twb3aegamqbqafyakwbqagkawabcahuakwa0adiatwbfagmacqbxafeazqa1ag0aoaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050258>[M0192]音乐电影赏析2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=57 name='yxtj57' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=58 name=chkKC58 type=checkbox
+													value="050259|2208|01|03|05|02|1.0||[M0193]欧美电影赏析1班|cabyadkarqbnahaaawb5ae8auqbdagmavqbaadmatwa1agoarqbnagqatqbzageadwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050259>[M0193]欧美电影赏析1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=58 name='yxtj58' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=59 name=chkKC59 type=checkbox
+													value="050260|2208|01|03|05|02|1.0||[M0194]欧美电影赏析2班|taa3aeoaaqbwagsayqblafaaqqbxag4awqbfagoazabiagmaqwblahkasgbwahmaqqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050260>[M0194]欧美电影赏析2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=59 name='yxtj59' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=60 name=chkKC60 type=checkbox
+													value="050261|2208|01|03|05|02|1.0||[M0195]工笔花鸟画零基础入门1班|vqbiahiauwbhafaaoqbvadaanwbsagmaeqb6agoadabeadaazqbxahkavqbzafcazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050261>[M0195]工笔花鸟画零基础入门1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=60 name='yxtj60' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=61 name=chkKC61 type=checkbox
+													value="050262|2208|01|03|05|02|1.0||[M0196]工笔花鸟画零基础入门2班|babhagqarqbtaecauqb5ahcavgboafiatqbnadmazga2aeoacwbiacsavwbyahaabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050262>[M0196]工笔花鸟画零基础入门2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=61 name='yxtj61' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=62 name=chkKC62 type=checkbox
+													value="050263|2208|01|03|05|02|1.0||[M0197]户外运动1班|twbaagqawaa2ag4avwboahkadwbdaecasabxaeyavgbtahgadaboagyatabqaeoavqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050263>[M0197]户外运动1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=62 name='yxtj62' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=63 name=chkKC63 type=checkbox
+													value="050264|2208|01|03|05|02|1.0||[M0198]户外运动2班|yqbxaeoamgbsadqacqboag4aqqb5afyaaqbbafqasgbwagsawgbvahkaaab5afaavqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050264>[M0198]户外运动2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=63 name='yxtj63' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=64 name=chkKC64 type=checkbox
+													value="050265|2208|01|03|05|02|1.0||[M0199]恰恰舞1班|dwb2ahyadgbsafaanabpadyavwbeag0aeqa4ae4aagbpafoamwbpaeeaagbgahaaywa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050265>[M0199]恰恰舞1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=64 name='yxtj64' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=65 name=chkKC65 type=checkbox
+													value="050266|2208|01|03|05|02|1.0||[M0200]恰恰舞2班|tablafuauwbtadcababwahqaywa1agcavabzagsaoqblafeawqbwadmaqqbxafmanaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050266>[M0200]恰恰舞2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=65 name='yxtj65' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=66 name=chkKC66 type=checkbox
+													value="050267|2208|01|03|05|02|1.0||[M0201]攀岩1班|uabzahiaaabtahkangbzaewababtafiabwbxaekabwazahyaaga2aeoavqbtagwaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050267>[M0201]攀岩1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=66 name='yxtj66' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=67 name=chkKC67 type=checkbox
+													value="050268|2208|01|03|05|02|1.0||[M0202]攀岩2班|uaaxag8alwbqagkacwbjafyaeqbbadyaawbnafuasabhagearqbsageaagbyae4aawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050268>[M0202]攀岩2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=67 name='yxtj67' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=68 name=chkKC68 type=checkbox
+													value="050269|2208|01|03|05|02|1.0||[M0203]绘画作品赏析与表现1班|dga2ag4abqbmagqatqbxaheaoqbradyacaaradeaeaa4agqaoabiagkacabladgaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050269>[M0203]绘画作品赏析与表现1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=68 name='yxtj68' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=69 name=chkKC69 type=checkbox
+													value="050270|2208|01|03|05|02|1.0||[M0204]艺术鉴赏1班|awbpafqazaa2agmazgbnaheaqga0aguazwbbag4argbwafgaoabgaemarqbiaeuaywa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050270>[M0204]艺术鉴赏1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=69 name='yxtj69' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=70 name=chkKC70 type=checkbox
+													value="050271|2208|01|03|05|02|1.0||[M0205]艺术鉴赏2班|vgbjagcanqbzaekamqbuafaaqgbhaduanabpafgaawb1ae0azwbwaguaaaa0afkazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050271>[M0205]艺术鉴赏2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=70 name='yxtj70' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=71 name=chkKC71 type=checkbox
+													value="050272|2208|01|03|05|02|1.0||[M0206]生活陶艺1班|cgbcadmaoabxadeasaa3agcadwa3agoabqbtafkatwbqag0aagbuafeaeqb0ageawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050272>[M0206]生活陶艺1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=71 name='yxtj71' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=72 name=chkKC72 type=checkbox
+													value="050273|2208|01|03|05|02|1.0||[M0207]生活陶艺2班|ngbyagsazqbpafuargbradiarwbpag0azqbbae4auwbmacsaoabtafcababkadaaqqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050273>[M0207]生活陶艺2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=72 name='yxtj72' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=73 name=chkKC73 type=checkbox
+													value="050274|2208|01|03|05|02|1.0||[M0208]家居美学设计1班|oqbxafaamwazag4aeqboagwadga4agmaywb3agmaywbzagqaraaxag0acqbradcanaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050274>[M0208]家居美学设计1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=73 name='yxtj73' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=74 name=chkKC74 type=checkbox
+													value="050275|2208|01|03|05|02|1.0||[M0209]家居美学设计2班|wgbxafcaeqbsagoatabqageaqqbuadqazqbxahyanqbhacsarqa0adcanqbkacsarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050275>[M0209]家居美学设计2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=74 name='yxtj74' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=75 name=chkKC75 type=checkbox
+													value="050276|2208|01|03|05|02|1.0||[M0210]剪纸与刺绣1班|dqbvaeuaqga5ahqaoqbhagsadaa3aekaqwbvahmabwbjafmawabwaeeadgavaguawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050276>[M0210]剪纸与刺绣1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=75 name='yxtj75' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=76 name=chkKC76 type=checkbox
+													value="050277|2208|01|03|05|02|1.0||[M0211]剪纸与刺绣2班|ygb4aggadwbdahuaugaxac8ayqbkadgadwbfagsawab2ahoavgbcaggacgaxaecarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050277>[M0211]剪纸与刺绣2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=76 name='yxtj76' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=77 name=chkKC77 type=checkbox
+													value="050278|2208|01|03|05|02|1.0||[M0212]剪纸与刺绣3班|yqbdafmaqga0agcaygbcagyawgbjaegazaaxadmazgbwaduavwbnadcamqa2ahgaywa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050278>[M0212]剪纸与刺绣3班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=77 name='yxtj77' type=checkbox value=''></td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;45</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=78 name=chkKC78 type=checkbox
+													value="050279|2208|01|03|05|02|1.0||[M0213]毛笔小楷7班|saazagyarqbkahaamgbtacsaoabeaegawgbpagoabqbsahgaywb3aewadqboafqaywa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050279>[M0213]毛笔小楷7班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=78 name='yxtj78' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=79 name=chkKC79 type=checkbox
+													value="050280|2208|01|03|05|02|1.0||[M0214]毛笔小楷8班|awb3ae4atabsagyavwb2agqamwb6ahoacabhaesarwbvafoacqbfaeiauabeahkabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050280>[M0214]毛笔小楷8班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=79 name='yxtj79' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=80 name=chkKC80 type=checkbox
+													value="050281|2208|01|03|05|02|1.0||[M0215]毛笔小楷9班|ywawahmaygb1admawgbzaecabaavaesatabdaegavgbwahgatabsahcaaabhaegadwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050281>[M0215]毛笔小楷9班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=80 name='yxtj80' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=81 name=chkKC81 type=checkbox
+													value="050050|2208|01|03|05|02|1.0||[M0004]钢笔书法4班|bwbrafkatgbcafmarabjahqakwavaeyarabkagoaeabvahoauwbzageabqbdagyaoaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050050>[M0004]钢笔书法4班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=81 name='yxtj81' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=82 name=chkKC82 type=checkbox
+													value="050051|2208|01|03|05|02|1.0||[M0005]钢笔书法5班|mwblag8asabkafeazgbyagmadqbuafyanwa0aegaeqboaeuababgafeatabgaeiawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050051>[M0005]钢笔书法5班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=82 name='yxtj82' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=83 name=chkKC83 type=checkbox
+													value="050052|2208|01|03|05|02|1.0||[M0006]钢笔书法6班|oqbjadealwbeadcasabeafeawqbxaeoababrahiawgbsae8aagbiadeaoabcaeqacwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050052>[M0006]钢笔书法6班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=83 name='yxtj83' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=84 name=chkKC84 type=checkbox
+													value="050053|2208|01|03|05|02|1.0||[M0007]钢笔书法7班|ngbpacsamwbkadeavgboahcaoabzafiaaqbsafqacgbhagyawabaaeiaoabvagmarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050053>[M0007]钢笔书法7班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=84 name='yxtj84' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=85 name=chkKC85 type=checkbox
+													value="050054|2208|01|03|05|02|1.0||[M0008]钢笔书法8班|awbxag4azwbpaduamwbxaeqasqawaguauwboafuadgbuagsaeabxaemavqbnagyabwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050054>[M0008]钢笔书法8班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=85 name='yxtj85' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=86 name=chkKC86 type=checkbox
+													value="050055|2208|01|03|05|02|1.0||[M0009]钢笔书法9班|uqbnafmacqbkaeuawab5adaazabhaeyamwbuag4auwavadgaeabcafcangbhafeazwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050055>[M0009]钢笔书法9班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=86 name='yxtj86' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=87 name=chkKC87 type=checkbox
+													value="050056|2208|01|03|05|02|1.0||[M0010]钢笔书法10班|sabxaemazwblageadqbbaheatabhafqadqarag8aagb4ahaacqaxaegaegbpagyaoaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050056>[M0010]钢笔书法10班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=87 name='yxtj87' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=88 name=chkKC88 type=checkbox
+													value="050057|2208|01|03|05|02|1.0||[M0011]钢笔书法11班|ugbaaeoaawbjagoamqbjahcaaabsagkayga4adaazqboaeyarabcaegauwboahaawqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050057>[M0011]钢笔书法11班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=88 name='yxtj88' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=89 name=chkKC89 type=checkbox
+													value="050067|2208|01|03|05|02|1.0||[M0021]毛笔小楷4班|rwbuaduacqbqahqatqblafuavabsagmaywbwafkabwbmaeeawqbpae4atabiafiacwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050067>[M0021]毛笔小楷4班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=89 name='yxtj89' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=90 name=chkKC90 type=checkbox
+													value="050068|2208|01|03|05|02|1.0||[M0022]毛笔小楷5班|nwbjagianabyagiaoqbsaguakwbwahkaeabmaewavwbgacsacabpaeiangbpahgauqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050068>[M0022]毛笔小楷5班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=90 name='yxtj90' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=91 name=chkKC91 type=checkbox
+													value="050069|2208|01|03|05|02|1.0||[M0023]毛笔小楷6班|dwbsahiamabbafmaaabwadaavgazaemauqbzafqamga0afgawqbtafuakwbvagkatqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050069>[M0023]毛笔小楷6班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=91 name='yxtj91' type=checkbox value=''></td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;40</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=92 name=chkKC92 type=checkbox
+													value="050088|2208|01|03|05|02|1.0||[M0042]吉他1班|oqbragwatqbxahcawqbrahearwbdagoasqbkafcadgbhaegabwbqahuarwbdafgarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050088>[M0042]吉他1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=92 name='yxtj92' type=checkbox value=''></td>
+							<td align=right>&ensp;35</td>
+							<td align=right>&ensp;35</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=93 name=chkKC93 type=checkbox
+													value="050091|2208|01|03|05|02|1.0||[M0045]声乐合唱1班|zabjafeazqbmafgazqbkagwaegbuaecavga2afearabpafcadwbsafaabqa5aekarqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050091>[M0045]声乐合唱1班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=93 name='yxtj93' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=94 name=chkKC94 type=checkbox
+													value="050092|2208|01|03|05|02|1.0||[M0046]声乐合唱2班|zabzagwamaawahkamabpaewaqgblahyabwbmaguavqbvadmatwbtaekamgbiagsaoaa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050092>[M0046]声乐合唱2班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=94 name='yxtj94' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=95 name=chkKC95 type=checkbox
+													value="050093|2208|01|03|05|02|1.0||[M0047]声乐合唱3班|vaa4adqayqbnahmaqqbbaecangbjaggawqbtaecanwbiahoacabmae4aoqaxagoaawa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050093>[M0047]声乐合唱3班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=95 name='yxtj95' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=96 name=chkKC96 type=checkbox
+													value="050094|2208|01|03|05|02|1.0||[M0048]声乐合唱4班|zwbnaecababbaekabqbvafeatqbkadqadgbaaduacwb2aemadabmae8atgbmag8atqa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050094>[M0048]声乐合唱4班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=96 name='yxtj96' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=97 name=chkKC97 type=checkbox
+													value="050095|2208|01|03|05|02|1.0||[M0049]声乐合唱5班|qqawafeavablahgaswblahaasab3agoawablahqabwbeagiaegbjadiavwboafkacwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050095>[M0049]声乐合唱5班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=97 name='yxtj97' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='B' title=''>
+							<td align=center><input disabled id=98 name=chkKC98 type=checkbox
+													value="050096|2208|01|03|05|02|1.0||[M0050]声乐合唱6班|yqb5aeoaegbhac8atwbcaesaoqbjagqacaaxaeyaygbragsaegbgahgawabjahiadwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050096>[M0050]声乐合唱6班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=98 name='yxtj98' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+						<tr class='H' title=''>
+							<td align=center><input disabled id=99 name=chkKC99 type=checkbox
+													value="050097|2208|01|03|05|02|1.0||[M0051]声乐合唱7班|egaxae8ababwahaawga5ag8aygbrag4ababxahaaaab0agoaswbjafmatwbpag8adwa9aa==">
+							</td>
+							<td><a href='javascript:void(0)' id=showD onclick=openWin(this,'kc') value=050097>[M0051]声乐合唱7班</a>
+							</td>
+							<td align=right>1.0</td>
+							<td>理论课/普通课</td>
+							<td align=left><br></td>
+							<td align=center><input disabled id=99 name='yxtj99' type=checkbox value=''></td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;95</td>
+							<td align=right>&ensp;0</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr style='display:none'>
+				<td align=right height=30 style='display:none'><input class=but40 name=Submit onclick='return ChkValue(this)' type=button
+																	  value=提交预选><input name=id
+																											 type=hidden
+																											 value=''><input
+						id=sel_lx name=sel_lx type=hidden value=2><input name=SelSpeciality type=hidden value=></td>
+			</tr>
+		</table>
+		<script language=javascript>parent.document.getElementById('btn_save').disabled = false;</script>
+</div>
+</body>
+</html>
